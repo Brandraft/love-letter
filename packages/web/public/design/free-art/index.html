@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Love Letter · Free contemporary art study</title>
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+  :root { --bg:#f3f0e8; --ink:#1c1a17; --ink-2:#6a655c; --ink-3:#a39d92; --line:#d8d3c7; --acc:#c0391f; --serif:'Alegreya',Georgia,serif; --sans:'Alegreya Sans',system-ui,sans-serif; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:400 17px/1.5 var(--sans); }
+  main { max-width:1180px; margin:0 auto; padding:40px 28px 80px; }
+  h1 { font:800 44px/1.05 var(--serif); margin:0 0 8px; }
+  h2 { font:800 30px/1.1 var(--serif); margin:0 0 4px; }
+  h3 { font:700 13px var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin:0 0 10px; }
+  p { max-width:68ch; }
+  .lede { font-size:19px; color:var(--ink-2); margin:0 0 36px; }
+  a { color:var(--ink); }
+  .nav { font-size:14px; color:var(--ink-2); margin-bottom:28px; }
+  section.style { border-top:1px solid var(--line); padding:36px 0 28px; display:grid; grid-template-columns:1fr 1.2fr; gap:36px; align-items:start; }
+  section.style.wide { display:block; }
+  .meta { font-size:14px; color:var(--ink-2); }
+  .meta b { color:var(--ink); }
+  .cards { display:flex; gap:18px; align-items:flex-end; flex-wrap:wrap; }
+  .cards.small { gap:6px; margin-top:18px; }
+  .notes { display:grid; grid-template-columns:1fr 1fr; gap:6px 28px; margin:18px 0 0; padding:0; list-style:none; font-size:15px; }
+  .notes li { padding:6px 0; border-top:1px solid var(--line); }
+  .notes li b { display:block; font:700 12px var(--sans); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+  .verdict { margin-top:16px; font:700 18px/1.3 var(--serif); }
+  .verdict u { text-decoration:none; border-bottom:2px solid var(--ink); }
+  .verdict em { font-style:italic; color:var(--acc); }
+  table { border-collapse:collapse; width:100%; font-size:15px; margin-top:16px; }
+  th, td { text-align:left; padding:10px 12px 10px 0; border-top:1px solid var(--line); vertical-align:top; }
+  th { font:700 12px var(--sans); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); border-top:0; }
+  td.y { font-weight:700; } td.n { color:var(--ink-3); }
+  .card { --parch:#f1e7d2; --parch-2:#e6d9bd; --lapis:#23418c; --lapis-2:#172c63; --verm:#c43a26; --gold:#cfa43a;
+    width:var(--card-w); aspect-ratio:7/10; font-size:calc(var(--card-w)/16); position:relative; border-radius:.9em; background:var(--parch); color:var(--lapis-2);
+    padding:.8em; display:flex; flex-direction:column; overflow:hidden; flex-shrink:0; box-shadow:0 1px 1px rgba(0,0,0,.3),0 .8em 1.6em rgba(10,10,30,.45); }
+  .card::before { content:''; position:absolute; inset:.4em; border:.15em solid var(--lapis); border-radius:.6em; pointer-events:none; }
+  .card::after { content:''; position:absolute; inset:.75em; border:.1em solid var(--gold); border-radius:.4em; pointer-events:none; }
+  .card-rank { position:absolute; top:.55em; left:1.05em; z-index:2; font:800 1.9em/1 var(--serif); color:var(--lapis-2); letter-spacing:-.02em; }
+  .card-window { flex:1; min-height:0; margin:2.4em .4em 0; position:relative; overflow:hidden; border:.15em solid var(--lapis); border-radius:.3em; background:var(--parch-2); }
+  .card-window img { width:100%; height:100%; object-fit:cover; display:block; }
+  .card-window::before, .card-window::after { content:''; position:absolute; left:0; right:0; height:.7em; z-index:1;
+    background:repeating-linear-gradient(90deg,var(--verm) 0 .7em,var(--gold) .7em 1.4em,var(--lapis) 1.4em 2.1em,var(--gold) 2.1em 2.8em); }
+  .card-window::before { top:0; border-bottom:.1em solid var(--lapis); } .card-window::after { bottom:0; border-top:.1em solid var(--lapis); }
+  .card-name { margin:.7em .4em 0; text-align:center; font:800 1.45em/1 var(--serif); letter-spacing:.12em; text-transform:uppercase; padding:.25em 0 .15em; }
+  .card-sm .card-name { display:none; } .card-sm { padding:.7em; }
+  /* Ink styles: drop the colour band, keep one ink. */
+  .s-ink .card { --parch:#f6f1e6; --parch-2:#f6f1e6; --lapis:#1c1a17; --lapis-2:#1c1a17; --verm:#1c1a17; --gold:#1c1a17; border-radius:.3em; }
+  .s-ink .card::after { display:none; } .s-ink .card::before { border-width:.1em; inset:.5em; border-radius:.2em; }
+  .s-ink .card-window::before, .s-ink .card-window::after { display:none; }
+  .s-ink .card-window { border-width:.1em; border-radius:0; }
+  /* Painted styles: keep the frame, soften the band. */
+  .s-paint .card-window::before, .s-paint .card-window::after { background:repeating-linear-gradient(90deg,var(--lapis) 0 1.4em,var(--gold) 1.4em 2.8em); height:.4em; }
+  @media (max-width:760px) { section.style { grid-template-columns:1fr; } .notes { grid-template-columns:1fr; } main { padding:28px 18px 60px; } h1 { font-size:34px; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="nav"><a href="/design/">← Design guide</a> · <a href="/design/art/">Art study</a> · <a href="/design/retheme/">Retheme study</a></div>
+  <h1>Free contemporary art: is there a drawn deck we could just use?</h1>
+  <p class="lede">Final experiment. Not museums this time: art made by living illustrators and released under licences that let an open-source game ship it. Searched OpenGameArt, itch.io, DriveThruRPG stock art, open-source game repositories and open webcomics. Card names stay as they are. Same frame as the game.</p>
+
+  <section class="style s-paint">
+    <div>
+      <h3>Candidate A · the only complete cast</h3>
+      <h2>Battle for Wesnoth portraits</h2>
+      <div class="meta">Portraits from the open-source strategy game, drawn by its art team (Kathrin "Kitty" Polikeit, Emilien Rotival and others), 2008 onward. <b>CC BY-SA 4.0 or GPL v2+</b>, the project's choice. Full-body digital paintings with a strong line, transparent backgrounds, 400–600px tall. Sixty-three human portraits in the core set plus named campaign characters: a princess (Li'sar), a queen (Asheviere), a young prince (Konrad), archmages, royal guards, marshals.</div>
+      <ul class="notes">
+        <li><b>Covers the cast</b> All eight ranks, with real characters, and spares for the duplicates.</li>
+        <li><b>Style</b> Painted and stylised, consistent across the set. Closer to a game than a gallery.</li>
+        <li><b>At 56px</b> Good: single figures on transparent backgrounds, high contrast.</li>
+        <li><b>Licence cost</b> Share-alike. The eight card images stay CC BY-SA with credits; the code stays MIT. Workable, but it is the only candidate with that string attached.</li>
+      </ul>
+      <div class="verdict">The one deck that <u>exists today</u> and fits every card. It is also the one the owner's rule argues against: <em>realistic</em> enough that the cards would read as "a fantasy game", not "a letter".</div>
+    </div>
+    <div>
+      <div class="cards">
+        <div class="card" style="--card-w:132px"><span class="card-rank">1</span><div class="card-window"><img src="wesnoth-guard.webp"></div><div class="card-name">Guard</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">2</span><div class="card-window"><img src="wesnoth-priest.webp"></div><div class="card-name">Priest</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">3</span><div class="card-window"><img src="wesnoth-baron.webp"></div><div class="card-name">Baron</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">4</span><div class="card-window"><img src="wesnoth-handmaid.webp"></div><div class="card-name">Handmaid</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">5</span><div class="card-window"><img src="wesnoth-prince.webp"></div><div class="card-name">Prince</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">6</span><div class="card-window"><img src="wesnoth-king.webp"></div><div class="card-name">King</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">7</span><div class="card-window"><img src="wesnoth-countess.webp"></div><div class="card-name">Countess</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">8</span><div class="card-window"><img src="wesnoth-princess.webp"></div><div class="card-name">Princess</div></div>
+      </div>
+      <div class="cards small">
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">1</span><div class="card-window"><img src="wesnoth-guard.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">2</span><div class="card-window"><img src="wesnoth-priest.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">6</span><div class="card-window"><img src="wesnoth-king.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">8</span><div class="card-window"><img src="wesnoth-princess.webp"></div></div>
+      </div>
+      <p class="meta" style="margin-top:14px">Credit as shipped: "Portraits from The Battle for Wesnoth, © the Wesnoth artists, CC BY-SA 4.0, wesnoth.org".</p>
+    </div>
+  </section>
+
+  <section class="style s-paint">
+    <div>
+      <h3>Candidate B · best drawing, wrong cast</h3>
+      <h2>David Revoy, Pepper&amp;Carrot</h2>
+      <div class="meta">Open webcomic, 2014 onward, painted in Krita. <b>CC BY 4.0</b>, no share-alike. Revoy publishes high-resolution sources and asks only for a credit line. The cast is witches and one princess, Coriander of Qualicity, who later becomes a queen. Nothing for Guard, Baron, King or Priest without stretching.</div>
+      <ul class="notes">
+        <li><b>Covers the cast</b> Princess, maybe Handmaid, maybe Countess. Five cards missing.</li>
+        <li><b>Style</b> Soft digital painting, big eyes, warm light. Charming and clearly one hand.</li>
+        <li><b>At 56px</b> Fine for the portraits, poor for the scenes.</li>
+        <li><b>Licence cost</b> Lowest of all: attribution only.</li>
+      </ul>
+      <div class="verdict">If we wanted a drawn deck, this is the licence and the artist to <u>commission or ask</u>. As found art it fills three cards.</div>
+    </div>
+    <div>
+      <div class="cards">
+        <div class="card" style="--card-w:132px"><span class="card-rank">8</span><div class="card-window"><img src="pc-princess.webp"></div><div class="card-name">Princess</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">4</span><div class="card-window"><img src="pc-handmaid.webp"></div><div class="card-name">Handmaid</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">2</span><div class="card-window"><img src="pc-priest.webp"></div><div class="card-name">Priest</div></div>
+      </div>
+      <div class="cards small">
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">8</span><div class="card-window"><img src="pc-princess.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">4</span><div class="card-window"><img src="pc-handmaid.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">2</span><div class="card-window"><img src="pc-priest.webp"></div></div>
+      </div>
+      <p class="meta" style="margin-top:14px">"Coriander the Queen", "Coriander concept art", "Portrait of Pepper" by David Revoy, CC BY 4.0, peppercarrot.com.</p>
+    </div>
+  </section>
+
+  <section class="style s-ink">
+    <div>
+      <h3>Candidate C · ink, CC0</h3>
+      <h2>Duncan Hall, Grimdark Fantasy Characters</h2>
+      <div class="meta">Thirteen pen-and-ink figures released on itch.io, <b>CC0</b>, "no generative AI was used". Confident hatching, full figures, white ground. The register is grim: skulls, plague doctors, berserkers. Knights exist; nobody at court does.</div>
+      <ul class="notes">
+        <li><b>Covers the cast</b> Guard, Baron, maybe King. No women at all.</li>
+        <li><b>Style</b> The best pure drawing in the free pool. Monochrome, so the frame drops its colour band.</li>
+        <li><b>At 56px</b> Weak, like all hatching.</li>
+        <li><b>Licence cost</b> None.</li>
+      </ul>
+      <div class="verdict">Right craft, <em>wrong mood</em>. A letter to a princess does not arrive by plague doctor.</div>
+    </div>
+    <div>
+      <div class="cards">
+        <div class="card" style="--card-w:132px"><span class="card-rank">1</span><div class="card-window"><img src="duncan-guard.webp"></div><div class="card-name">Guard</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">3</span><div class="card-window"><img src="duncan-baron.webp"></div><div class="card-name">Baron</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">6</span><div class="card-window"><img src="duncan-king.webp"></div><div class="card-name">King</div></div>
+      </div>
+      <div class="cards small">
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">1</span><div class="card-window"><img src="duncan-guard.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">3</span><div class="card-window"><img src="duncan-baron.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">6</span><div class="card-window"><img src="duncan-king.webp"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="style s-ink">
+    <div>
+      <h3>Candidate D · cartoon, public domain</h3>
+      <h2>Gordy Higgins, Public Domain Fantasy Art Pack</h2>
+      <div class="meta">Vector and PNG cartoons for OSR tabletop games, itch.io, <b>public domain, "no attribution needed"</b>. Wizards, goblins, adventurers in a dungeon. Lively and funny, well drawn in its register.</div>
+      <ul class="notes">
+        <li><b>Covers the cast</b> None directly. Everyone is an adventurer.</li>
+        <li><b>Style</b> Big-nosed cartoon, heavy outline, group scenes.</li>
+        <li><b>At 56px</b> Good, cartoons survive shrinking.</li>
+        <li><b>Licence cost</b> None.</li>
+      </ul>
+      <div class="verdict">Shows what "free" mostly means: <em>dungeon-crawl fantasy</em>, made for a different game.</div>
+    </div>
+    <div>
+      <div class="cards">
+        <div class="card" style="--card-w:132px"><span class="card-rank">2</span><div class="card-window"><img src="gordy-a.webp"></div><div class="card-name">Priest</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">4</span><div class="card-window"><img src="gordy-b.webp"></div><div class="card-name">Handmaid</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">1</span><div class="card-window"><img src="gordy-c.webp"></div><div class="card-name">Guard</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="style wide">
+    <h3>Also looked at, not worth a card</h3>
+    <table>
+      <tr><th>Source</th><th>Licence</th><th>Why not</th></tr>
+      <tr><td>Ravenmore, Fantasy Portrait Pack (OpenGameArt)</td><td>CC BY 3.0</td><td>Seven 256px painted heads of adventurer races. Too small, no court.</td></tr>
+      <tr><td>Justin Nichol, FLARE portrait packs (OpenGameArt)</td><td>CC BY-SA 3.0 / GPL</td><td>Photoreal painted busts. Realism, which the owner ruled out first.</td></tr>
+      <tr><td>Zeldyn, Priest / Fighter portraits (OpenGameArt)</td><td>CC BY 3.0</td><td>Same: realistic painted portraits, single figures only.</td></tr>
+      <tr><td>Morphs, Free Tabletop Art Pack (itch.io)</td><td>CC BY 4.0</td><td>Fifteen hand-drawn objects: swords, doors, scrolls. No people.</td></tr>
+      <tr><td>Axebane, Free Fantasy Stock Art (itch.io)</td><td>CC BY 4.0</td><td>Seventy-four objects. No people.</td></tr>
+      <tr><td>Levi Gilbert, ArtPack 2022 (itch.io)</td><td>CC BY 4.0</td><td>Pen-and-ink plants and rubble. No people.</td></tr>
+      <tr><td>Penflower Ink, character packs (itch.io)</td><td>Custom, paid</td><td>Good traditional ink adventurers, but paid and under the artist's own terms, not an open licence.</td></tr>
+      <tr><td>orchidrabbit, Fantasy Character Portraits vol. 1</td><td>CC BY 4.0, paid</td><td>Seventy-two portraits for $5. Adventurer races. Could be bought, still not a court.</td></tr>
+      <tr><td>OpenGameArt "CC0 Portraits" collection (294 items)</td><td>CC0</td><td>Pixel heads, anime faces, sci-fi, photos of paintings. Nothing coherent enough to make a deck.</td></tr>
+      <tr><td>Kim Holm (ink, Norway)</td><td>Reported CC BY, unverified</td><td>Horror and dream ink; could not confirm a licence page. Not pursued.</td></tr>
+    </table>
+  </section>
+
+  <section class="style wide">
+    <h3>Conclusion</h3>
+    <p>There is <b>no free, drawn, contemporary deck</b> for a Renaissance court. The free pool is dungeon fantasy (adventurers, monsters, loot), realistic painted busts, or objects. The one source with the whole cast is Wesnoth, and taking it would trade the manuscript identity for a generic fantasy one under a share-alike licence.</p>
+    <p>Two things fell out of the search that are worth keeping. First, Pepper&amp;Carrot shows the model for a future commissioned deck: a living artist, CC BY, high-resolution sources published. Second, the manuscripts remain the only material that is free, coherent across sixteen cards, legible small, and literally about the game's subject. The experiment argues for <u>keeping the Manesse deck</u>.</p>
+  </section>
+</main>
+</body>
+</html>

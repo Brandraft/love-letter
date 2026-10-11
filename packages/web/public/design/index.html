@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Love Letter · design</title>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{--bg:#f3f0e8;--bg-2:#e9e5db;--ink:#1c1a17;--ink-2:#6a655c;--ink-3:#a39d92;--line:#d8d3c7;--acc:#c0391f;--r:4px}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;font-family:"Alegreya Sans",system-ui,sans-serif;color:var(--ink);font-size:16px;line-height:1.45;padding:28px 20px 80px;max-width:980px;margin:0 auto}
+h1{font:800 44px/1 Alegreya,serif;margin:0 0 6px}
+h2{font:800 26px/1.1 Alegreya,serif;margin:48px 0 14px;padding-top:18px;border-top:1px solid var(--line)}
+h3{font:700 12px/1 "Alegreya Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:26px 0 10px}
+p{margin:0 0 10px;max-width:640px}
+.lede{font-size:18px;color:var(--ink-2)}
+ul{padding-left:18px;max-width:640px}li{margin-bottom:6px}
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+.sw div{height:64px;border-radius:var(--r);border:1px solid var(--line);font-size:12px;padding:6px 8px;display:flex;flex-direction:column;justify-content:flex-end;gap:1px}
+.sw small{opacity:.7;font-family:ui-monospace,monospace;font-size:11px}
+.type .d1{font:800 40px/1 Alegreya,serif}.type .d2{font:800 26px/1.1 Alegreya,serif}.type .d3{font:800 19px/1.2 Alegreya,serif}
+.type .b1{font-size:16px}.type .b2{font-size:14px;color:var(--ink-2)}.type .lb{font:700 12px/1 "Alegreya Sans";letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.type > div{padding:8px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.type > div span:last-child{font-size:12px;color:var(--ink-3);white-space:nowrap}
+.btn{font:700 15px "Alegreya Sans";padding:10px 22px;border-radius:var(--r);border:0;cursor:pointer;margin:0 8px 8px 0}
+.btn.pri{background:var(--ink);color:var(--bg)}.btn.cta{background:var(--acc);color:#fff}.btn.sec{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.link{font-size:15px;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px}
+.sent{font:700 26px/1.3 Alegreya,serif;max-width:640px}
+.sent u{text-decoration:none;border-bottom:2px solid var(--ink)}
+.sent u.todo{color:var(--ink-3);border-bottom:2px dashed var(--ink-3)}
+.opts{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;color:var(--ink-2);margin-top:10px}
+.opts span.on{color:var(--ink);border-bottom:1px solid var(--ink)}.opts span.dis{color:var(--ink-3);text-decoration:line-through}
+.opts small{font-size:12px;margin-left:3px}
+.deck{display:flex;gap:12px;flex-wrap:wrap}
+.card{width:140px;aspect-ratio:7/10;border-radius:9px;background:#f1e7d2;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.2),0 10px 22px rgba(30,20,10,.18);overflow:hidden;flex-shrink:0}
+.card::before{content:"";position:absolute;inset:4px;border:1.5px solid #23418c;border-radius:6px;pointer-events:none}
+.card::after{content:"";position:absolute;inset:7px;border:1px solid #cfa43a;border-radius:4px;pointer-events:none}
+.card img{position:absolute;inset:28px 11px 40px 11px;width:calc(100% - 22px);height:calc(100% - 68px);object-fit:cover;border:1.5px solid #23418c;border-radius:2px}
+.card .n{position:absolute;bottom:13px;left:0;right:0;text-align:center;font:800 13px Alegreya,serif;letter-spacing:.14em;text-transform:uppercase;color:#172c63}
+.card .k{position:absolute;top:6px;left:12px;font:800 20px/1 Alegreya,serif;color:#172c63;z-index:1}
+.card.back{background:#23418c}.card.back::before{border-color:#cfa43a}.card.back::after{border-color:rgba(255,255,255,.2)}
+.card.back i{position:absolute;inset:11px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.07) 0 1px,transparent 1px 8px),repeating-linear-gradient(-45deg,rgba(255,255,255,.07) 0 1px,transparent 1px 8px);border-radius:3px}
+/* mock table */
+.mock{border:1px solid var(--line);border-radius:10px;padding:18px;background:var(--bg);margin-top:12px}
+.top{display:flex;align-items:baseline;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.top .t{font:800 20px Alegreya,serif}.top .m{color:var(--ink-2);font-size:14px}
+.top .right{margin-left:auto;display:flex;gap:18px;font-size:14px;color:var(--ink-2)}.top .right b{color:var(--ink);font-weight:500}
+.seats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.seat{padding:14px 0 12px;display:grid;grid-template-columns:auto 1fr;gap:3px 12px;align-items:start}
+.seat + .seat{border-left:1px solid var(--line);padding-left:16px}
+.seat .bk{grid-row:1/4;width:32px;height:46px;border-radius:3px;background:#23418c;position:relative;margin-top:2px}
+.seat .bk::after{content:"";position:absolute;inset:3px;border:1px solid rgba(255,255,255,.3);border-radius:2px}
+.seat .nm{font:800 18px/1.1 Alegreya,serif}.seat .nm small{font:400 12px "Alegreya Sans";color:var(--ink-2);margin-left:6px}
+.seat .st{font-size:13px;color:var(--ink-2)}.seat .st.turn{color:var(--acc);font-weight:500}
+.seat .hs{font:700 13px/1 Alegreya,serif;letter-spacing:.3em;color:var(--ink-3);margin-top:3px}.seat .hs b{color:var(--ink)}
+.seat.out{opacity:.5}.seat.out .bk{visibility:hidden}
+.stage{padding:24px 0 22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.stage .cards{display:flex;align-items:center;gap:8px}.stage .card{width:96px}
+.stage .card .n{font-size:10px;bottom:9px}.stage .card .k{font-size:15px;top:5px;left:9px}.stage .card img{inset:21px 8px 28px 8px;width:calc(100% - 16px);height:calc(100% - 49px)}
+.stage .arr{color:var(--ink-3);font-size:20px}
+.narr .big{font:700 24px/1.15 Alegreya,serif;max-width:400px}.narr .big i{color:var(--acc)}.narr .sub{color:var(--ink-2);font-size:14px;margin-top:6px}
+.me{display:flex;gap:24px;align-items:flex-end;padding-top:20px;flex-wrap:wrap}
+.hand{display:flex;gap:12px;align-items:flex-end}.hand .card{width:124px}
+.hand .card.up{transform:translateY(-8px);box-shadow:0 0 0 2px var(--ink),0 16px 30px rgba(30,20,10,.25)}
+.cmd .lbl{font-size:13px;color:var(--ink-2);margin-bottom:4px}.cmd .sent{font-size:22px}
+.cmd .act{margin-top:14px;display:flex;gap:16px;align-items:center}
+.strip{margin-top:22px;padding-top:10px;border-top:1px solid var(--line);display:flex;gap:24px;font-size:13px;color:var(--ink-2);overflow:hidden;white-space:nowrap}
+.strip span{flex-shrink:0}.strip b{font:700 12px Alegreya,serif;color:var(--ink-3);margin-right:5px}.strip .me{color:var(--ink);padding:0}
+.no{color:var(--ink-3);text-decoration:line-through}
+@media (max-width:600px){h1{font-size:36px}.seat + .seat{border-left:0;padding-left:0;border-top:1px solid var(--line)}}
+</style></head><body>
+<h1>Love Letter</h1>
+<p class="lede">Design direction, working document. The cards are the paintings; the interface is the gallery wall.</p>
+
+<h2>Principles</h2>
+<ul>
+ <li><b>Only cards get ornament.</b> Frames, gold, lapis, checker bands live inside the cards. The interface never borrows them.</li>
+ <li><b>No containers.</b> Structure comes from hairlines, spacing and type size. No bordered panels, badges, pills or roundels in the chrome.</li>
+ <li><b>One accent, two jobs.</b> Vermilion marks whose turn it is and the one button that commits a move. Nothing else is colored.</li>
+ <li><b>Everything is a sentence.</b> The stage narrates the last action; the command area is a sentence you complete. It is the same sentence a terminal player types.</li>
+ <li><b>Numbers, not icons.</b> Scores are counts next to names. Discard history is a string of numerals.</li>
+</ul>
+
+<h2>Palette</h2>
+<h3>Surfaces and ink</h3>
+<div class="sw">
+ <div style="background:#f3f0e8">page<small>#f3f0e8</small></div>
+ <div style="background:#e9e5db">page sunken<small>#e9e5db</small></div>
+ <div style="background:#d8d3c7">hairline<small>#d8d3c7</small></div>
+ <div style="background:#1c1a17;color:#f3f0e8">ink<small>#1c1a17</small></div>
+ <div style="background:#6a655c;color:#f3f0e8">ink 2<small>#6a655c</small></div>
+ <div style="background:#a39d92;color:#1c1a17">ink 3<small>#a39d92</small></div>
+ <div style="background:#c0391f;color:#fff">accent<small>#c0391f</small></div>
+</div>
+<h3>The dark wall</h3>
+<p>Same hierarchy, inverted. Cards keep their palette; only the wall changes. Toggle in the top bar, remembered per browser, defaults to the system setting.</p>
+<div class="sw">
+ <div style="background:#1b1916;color:#efe9dc">page<small>#1b1916</small></div>
+ <div style="background:#25221e;color:#efe9dc">page raised<small>#25221e</small></div>
+ <div style="background:#36322c;color:#efe9dc">hairline<small>#36322c</small></div>
+ <div style="background:#efe9dc;color:#1b1916">ink<small>#efe9dc</small></div>
+ <div style="background:#b3aa9b;color:#1b1916">ink 2<small>#b3aa9b</small></div>
+ <div style="background:#776f63;color:#efe9dc">ink 3<small>#776f63</small></div>
+ <div style="background:#e0563a;color:#1b1916">accent<small>#e0563a</small></div>
+</div>
+<h3>Inside the cards only</h3>
+<div class="sw">
+ <div style="background:#f1e7d2">parchment<small>#f1e7d2</small></div>
+ <div style="background:#23418c;color:#fff">lapis<small>#23418c</small></div>
+ <div style="background:#172c63;color:#fff">lapis deep<small>#172c63</small></div>
+ <div style="background:#c43a26;color:#fff">vermilion<small>#c43a26</small></div>
+ <div style="background:#cfa43a">gold leaf<small>#cfa43a</small></div>
+</div>
+
+<h2>Type</h2>
+<p>Alegreya 800 for anything a player would say out loud. Alegreya Sans for everything else. Two families, one designer, five styles total.</p>
+<div class="type">
+ <div><span class="d1">Love Letter</span><span>Alegreya 800 · 40</span></div>
+ <div><span class="d2">tester plays the Guard on Claude</span><span>Alegreya 700–800 · 26</span></div>
+ <div><span class="d3">Bot Beatrix</span><span>Alegreya 800 · 19</span></div>
+ <div><span class="b1">Claude was holding the King and is out of the round.</span><span>Alegreya Sans 400 · 16</span></div>
+ <div><span class="b2">protected this turn · 14 s</span><span>Alegreya Sans 400 · 14, ink 2</span></div>
+ <div><span class="lb">Your turn</span><span>Alegreya Sans 700 · 12, caps, ink 3</span></div>
+</div>
+
+<h2>Geometry</h2>
+<ul>
+ <li>Radius 4px on buttons, 2–3px on anything smaller. Cards keep their own, larger radius.</li>
+ <li>Hairlines are 1px and one color. Dividers, not boxes.</li>
+ <li>Shadows only under cards. Panels differentiate by spacing, not elevation.</li>
+ <li>Emphasis is a 2px underline in ink. Open choices are a dashed underline in ink 3. Disabled choices are struck through.</li>
+ <li>Three buttons exist: ink (navigation, start), accent (commit a move), outlined (secondary). Links are underlined text.</li>
+</ul>
+<div style="margin-top:14px"><button class="btn pri">Start game</button><button class="btn cta">Play the Guard</button><button class="btn sec">Add a bot</button><span class="link">cancel</span></div>
+<h3>The command sentence</h3>
+<div class="sent">Play the <u>Guard</u> on <u>tester</u>, guessing <u class="todo">a card</u>.</div>
+<div class="opts"><span>Priest<small>2 left</small></span><span class="on">Baron<small>1</small></span><span class="dis">Handmaid</span><span>Prince<small>1</small></span><span>King<small>1</small></span><span class="dis">Countess</span><span>Princess<small>1</small></span></div>
+
+<h2>The deck</h2>
+<p>Miniatures from the Codex Manesse, c. 1305. Frame: double rule in lapis and gold, checker band, the rank as a plain numeral.</p>
+<div class="deck">
+ <div class="card"><span class="k">1</span><img src="/cards/guard-480.webp"><span class="n">Guard</span></div>
+ <div class="card"><span class="k">2</span><img src="/cards/priest-480.webp"><span class="n">Priest</span></div>
+ <div class="card"><span class="k">3</span><img src="/cards/baron-480.webp"><span class="n">Baron</span></div>
+ <div class="card"><span class="k">4</span><img src="/cards/handmaid-480.webp"><span class="n">Handmaid</span></div>
+ <div class="card"><span class="k">5</span><img src="/cards/prince-480.webp"><span class="n">Prince</span></div>
+ <div class="card"><span class="k">6</span><img src="/cards/king-480.webp"><span class="n">King</span></div>
+ <div class="card"><span class="k">7</span><img src="/cards/countess-480.webp"><span class="n">Countess</span></div>
+ <div class="card"><span class="k">8</span><img src="/cards/princess-480.webp"><span class="n">Princess</span></div>
+ <div class="card back"><i></i></div>
+</div>
+
+<h2>The table</h2>
+<p>Mid-game, 3 players, your turn, a Guard selected.</p>
+<div class="mock">
+ <div class="top"><span class="t">Love Letter</span><span class="m">Round 4 · first to 7 · 7 in the deck</span><span class="right"><span>tester <b>2</b></span><span>Claude <b>1</b></span><span>Beatrix <b>0</b></span></span></div>
+ <div class="seats">
+  <div class="seat"><div class="bk"></div><div class="nm">tester</div><div class="st turn">thinking · 14 s</div><div class="hs"><b>1</b>4<b>1</b></div></div>
+  <div class="seat"><div class="bk"></div><div class="nm">Beatrix <small>bot</small></div><div class="st">protected this turn</div><div class="hs">2 4</div></div>
+  <div class="seat out"><div class="bk"></div><div class="nm">Cyrano <small>bot</small></div><div class="st">out · held the Prince</div><div class="hs">1 3 5</div></div>
+ </div>
+ <div class="stage">
+  <div class="cards"><div class="card"><span class="k">1</span><img src="/cards/guard-480.webp"><span class="n">Guard</span></div><span class="arr">→</span><div class="card" style="transform:rotate(2deg)"><span class="k">6</span><img src="/cards/king-480.webp"><span class="n">King</span></div></div>
+  <div class="narr"><div class="big">tester plays the Guard on Claude and guesses <i>King</i>.</div><div class="sub">Claude was holding the King and is out of the round.</div></div>
+ </div>
+ <div class="me">
+  <div class="hand"><div class="card up"><span class="k">1</span><img src="/cards/guard-480.webp"><span class="n">Guard</span></div><div class="card"><span class="k">7</span><img src="/cards/countess-480.webp"><span class="n">Countess</span></div></div>
+  <div class="cmd"><div class="lbl">Your turn</div><div class="sent">Play the <u>Guard</u> on <u>tester</u>, guessing <u class="todo">a card</u>.</div>
+   <div class="opts"><span>Priest<small>2</small></span><span class="on">Baron<small>1</small></span><span class="dis">Handmaid</span><span>Prince<small>1</small></span><span>King<small>1</small></span><span class="dis">Countess</span><span>Princess<small>1</small></span></div>
+   <div class="act"><button class="btn cta">Play the Guard</button><span class="link">cancel</span></div></div>
+ </div>
+ <div class="strip"><span><b>40</b>Beatrix played the Handmaid</span><span class="me"><b>41</b>You drew the Guard</span><span><b>42</b>tester played the Guard on Claude, guessing King</span><span><b>43</b>Claude is out</span></div>
+</div>
+
+<h2>Motion</h2>
+<ul>
+ <li>Cards deal into your hand from the deck's direction (500 ms, ease-out with a small settle), the second and third card 80 ms apart.</li>
+ <li>The card you play lifts away (350 ms). The stage sentence rises 120 ms later, the result line at 300 ms; a revealed card flips in 220 ms after the played one.</li>
+ <li>Ledger rows deal their cards and rise their text the same way, once, when they appear.</li>
+ <li>Status words slide in. Scores bump when they change. Overlays rise.</li>
+ <li>Nothing loops, nothing is decorative. All of it is disabled under prefers-reduced-motion.</li>
+</ul>
+<h2>Open questions</h2>
+<ul>
+ <li>Phone: seats stack, stage cards shrink to 72px, hand goes full width, the ledger drops its sequence numbers. Still the least-tested surface.</li>
+ <li>Sound: none yet. If ever, one paper sound for the deal and nothing else.</li>
+</ul>
+</body></html>

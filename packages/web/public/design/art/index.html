@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Love Letter · Art study: other traditions</title>
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+  :root { --bg:#f3f0e8; --bg-2:#e9e5db; --ink:#1c1a17; --ink-2:#6a655c; --ink-3:#a39d92; --line:#d8d3c7; --acc:#c0391f; --serif:'Alegreya',Georgia,serif; --sans:'Alegreya Sans',system-ui,sans-serif; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:400 17px/1.5 var(--sans); }
+  main { max-width:1180px; margin:0 auto; padding:40px 28px 80px; }
+  h1 { font:800 44px/1.05 var(--serif); margin:0 0 8px; }
+  h2 { font:800 30px/1.1 var(--serif); margin:0 0 4px; }
+  h3 { font:700 13px var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin:0 0 10px; }
+  p { max-width:68ch; }
+  .lede { font-size:19px; color:var(--ink-2); margin:0 0 36px; }
+  a { color:var(--ink); }
+  .nav { font-size:14px; color:var(--ink-2); margin-bottom:28px; }
+  section.style { border-top:1px solid var(--line); padding:36px 0 28px; display:grid; grid-template-columns: 1fr 1.2fr; gap:36px; align-items:start; }
+  section.style .meta { font-size:14px; color:var(--ink-2); }
+  section.style .meta b { color:var(--ink); }
+  .cards { display:flex; gap:18px; align-items:flex-end; flex-wrap:wrap; }
+  .cards.small { gap:6px; margin-top:18px; }
+  .notes { display:grid; grid-template-columns:1fr 1fr; gap:6px 28px; margin:18px 0 0; padding:0; list-style:none; font-size:15px; }
+  .notes li { padding:6px 0; border-top:1px solid var(--line); }
+  .notes li b { display:block; font:700 12px var(--sans); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+  .verdict { margin-top:16px; font:700 18px/1.3 var(--serif); }
+  .verdict u { text-decoration:none; border-bottom:2px solid var(--ink); }
+  .verdict em { font-style:italic; color:var(--acc); }
+  .swatches { display:flex; gap:0; margin:10px 0 0; }
+  .swatches i { display:block; width:32px; height:22px; }
+  table { border-collapse:collapse; width:100%; font-size:15px; margin-top:24px; }
+  th, td { text-align:left; padding:10px 12px 10px 0; border-top:1px solid var(--line); vertical-align:top; }
+  th { font:700 12px var(--sans); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); border-top:0; }
+  td.y { color:var(--ink); font-weight:700; } td.n { color:var(--ink-3); }
+  .chrome { margin-top:14px; display:flex; gap:14px; align-items:center; font-size:14px; }
+  .chrome .tag { padding:4px 0; border-bottom:2px solid var(--ink); font:700 15px var(--serif); }
+  .chrome .cta { font:600 14px var(--sans); color:#fff; background:var(--acc); padding:8px 14px; border-radius:4px; }
+
+  /* The card, verbatim from the app, so the frame is the real one. */
+  .card { --parch:#f1e7d2; --parch-2:#e6d9bd; --lapis:#23418c; --lapis-2:#172c63; --verm:#c43a26; --gold:#cfa43a;
+    width:var(--card-w); aspect-ratio:7/10; font-size:calc(var(--card-w)/16); position:relative; border-radius:.9em; background:var(--parch); color:var(--lapis-2);
+    padding:.8em; display:flex; flex-direction:column; overflow:hidden; flex-shrink:0; box-shadow:0 1px 1px rgba(0,0,0,.3),0 .8em 1.6em rgba(10,10,30,.45); }
+  .card::before { content:''; position:absolute; inset:.4em; border:.15em solid var(--lapis); border-radius:.6em; pointer-events:none; }
+  .card::after { content:''; position:absolute; inset:.75em; border:.1em solid var(--gold); border-radius:.4em; pointer-events:none; }
+  .card-rank { position:absolute; top:.55em; left:1.05em; z-index:2; font:800 1.9em/1 var(--serif); color:var(--lapis-2); letter-spacing:-.02em; }
+  .card-window { flex:1; min-height:0; margin:2.4em .4em 0; position:relative; overflow:hidden; border:.15em solid var(--lapis); border-radius:.3em; background:var(--parch-2); }
+  .card-window img { width:100%; height:100%; object-fit:cover; display:block; }
+  .card-window::before, .card-window::after { content:''; position:absolute; left:0; right:0; height:.7em; z-index:1;
+    background:repeating-linear-gradient(90deg,var(--verm) 0 .7em,var(--gold) .7em 1.4em,var(--lapis) 1.4em 2.1em,var(--gold) 2.1em 2.8em); }
+  .card-window::before { top:0; border-bottom:.1em solid var(--lapis); } .card-window::after { bottom:0; border-top:.1em solid var(--lapis); }
+  .card-name { margin:.7em .4em 0; text-align:center; font:800 1.45em/1 var(--serif); letter-spacing:.12em; text-transform:uppercase; padding:.25em 0 .15em; }
+  .card-sm .card-name { display:none; } .card-sm { padding:.7em; }
+
+  /* Per-tradition frame adaptations: same geometry, different dressing. */
+  .s-hof .card { --parch:#efe3c8; --parch-2:#e2d2ad; --lapis:#8a2a1e; --lapis-2:#4a1a10; --verm:#8a2a1e; --gold:#b8922e; }
+  .s-hof .card-window::before, .s-hof .card-window::after { background:repeating-linear-gradient(90deg,var(--verm) 0 1.4em,var(--parch) 1.4em 2.8em); }
+  .s-tarot .card { --parch:#f3ead6; --parch-2:#efe6cf; --lapis:#1d1d1b; --lapis-2:#1d1d1b; --verm:#d4342a; --gold:#e3b73a; border-radius:.5em; }
+  .s-tarot .card::after { display:none; }
+  .s-tarot .card-window::before, .s-tarot .card-window::after { display:none; }
+  .s-tarot .card-window { border-width:.2em; border-radius:0; margin-top:2.2em; }
+  .s-tarot .card-name { font-weight:700; letter-spacing:.2em; }
+  .s-wood .card { --parch:#f6f1e6; --parch-2:#efe9db; --lapis:#1c1a17; --lapis-2:#1c1a17; --verm:#1c1a17; --gold:#1c1a17; border-radius:.3em; box-shadow:0 1px 1px rgba(0,0,0,.3),0 .5em 1em rgba(10,10,30,.25); }
+  .s-wood .card::after { display:none; } .s-wood .card::before { border-width:.1em; inset:.5em; border-radius:.2em; }
+  .s-wood .card-window::before, .s-wood .card-window::after { display:none; }
+  .s-wood .card-window { border-width:.1em; border-radius:0; filter:grayscale(1) contrast(1.1); }
+  .s-wood .card-rank.red, .s-wood .card-name.red { color:#a9281c; }
+  .s-ukiyo .card { --parch:#f4ecdc; --parch-2:#e8dfc9; --lapis:#1f2f4f; --lapis-2:#1f2f4f; --verm:#c9402b; --gold:#f4ecdc; border-radius:.4em; }
+  .s-ukiyo .card::after { display:none; } .s-ukiyo .card::before { inset:.5em; border-width:.1em; border-radius:.2em; }
+  .s-ukiyo .card-window::before, .s-ukiyo .card-window::after { height:.35em; background:var(--verm); border:0; }
+  .s-ukiyo .card-window { border-width:.1em; border-radius:0; }
+  .s-ukiyo .card-name { font-weight:700; letter-spacing:.3em; }
+  .s-gold .card { --parch:#f2ead8; --parch-2:#e9dfc8; --lapis:#5a6b3b; --lapis-2:#3d4a26; --verm:#b86a2b; --gold:#c9a24a; border-radius:1.1em; }
+  .s-gold .card-window::before, .s-gold .card-window::after { background:repeating-linear-gradient(90deg,var(--gold) 0 .35em,var(--parch) .35em .7em); height:.4em; }
+  .s-gold .card-window { border-radius:1.6em 1.6em .3em .3em; }
+  @media (max-width:760px) { section.style { grid-template-columns:1fr; } .notes { grid-template-columns:1fr; } main { padding:28px 18px 60px; } h1 { font-size:34px; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="nav"><a href="/design/">← Design guide</a></div>
+  <h1>Art study: what if the cards came from another tradition?</h1>
+  <p class="lede">A canvas exercise, nothing in the game changes. Same frame, same type, same sizes. Each section drops a different public-domain tradition into the window and then asks what it would drag along with it: palette, frame, chrome, tone, licensing.</p>
+
+  <section class="style s-manesse">
+    <div>
+      <h3>Current</h3>
+      <h2>Codex Manesse</h2>
+      <div class="meta">Zürich, c. 1300–1340. Courtly love poetry, which is literally the subject of the game. Public domain, high-resolution scans.</div>
+      <ul class="notes">
+        <li><b>Palette</b> Lapis, vermilion, gold, parchment. Flat and saturated, no shading.</li>
+        <li><b>Frame</b> The checker band is lifted from the manuscript borders, so frame and art agree.</li>
+        <li><b>At 56px</b> Figures stay legible because the forms are big and outlined.</li>
+        <li><b>Tone</b> Light, decorative, a little comic. Matches a bluffing game.</li>
+      </ul>
+      <div class="verdict">The reference. Everything below is measured against <u>this</u>.</div>
+    </div>
+    <div>
+      <div class="cards">
+        <div class="card" style="--card-w:132px"><span class="card-rank">1</span><div class="card-window"><img src="/cards/guard-480.webp"></div><div class="card-name">Guard</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">2</span><div class="card-window"><img src="/cards/priest-480.webp"></div><div class="card-name">Priest</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">6</span><div class="card-window"><img src="/cards/king-480.webp"></div><div class="card-name">King</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">8</span><div class="card-window"><img src="/cards/princess-480.webp"></div><div class="card-name">Princess</div></div>
+      </div>
+      <div class="cards small">
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">1</span><div class="card-window"><img src="/cards/guard-240.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">2</span><div class="card-window"><img src="/cards/priest-240.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">6</span><div class="card-window"><img src="/cards/king-240.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">8</span><div class="card-window"><img src="/cards/princess-240.webp"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="style s-hof">
+    <div>
+      <h3>Option A</h3>
+      <h2>Hofämterspiel</h2>
+      <div class="meta">Upper Rhine, c. 1455. The oldest complete deck of court cards: marshal, queen, lady-in-waiting, fool, cook, barber. A real 15th-century card game about a royal household. Original art is public domain; the good photos on Commons are CC BY-SA of a facsimile, so we would need our own scan or credit the photographer.</div>
+      <ul class="notes">
+        <li><b>Palette</b> Rust red, ochre, olive green, parchment. Warmer and duller than Manesse; no lapis.</li>
+        <li><b>Frame</b> The checker band becomes a plain two-colour band; gold rule stays.</li>
+        <li><b>At 56px</b> Thinner lines and busier backgrounds, slightly less legible than Manesse.</li>
+        <li><b>Tone</b> Playful and domestic. The roles map almost one to one onto Love Letter's cast.</li>
+      </ul>
+      <div class="verdict">Closest cousin. <u>Same century, same spirit</u>, with a better story (it is a card game). Costs a licensing detour.</div>
+      <div class="chrome"><span class="tag">Chrome unchanged</span><span class="cta">Play the Guard</span></div>
+    </div>
+    <div>
+      <div class="cards">
+        <div class="card" style="--card-w:132px"><span class="card-rank">1</span><div class="card-window"><img src="hof-guard.webp"></div><div class="card-name">Guard</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">4</span><div class="card-window"><img src="hof-handmaid.webp"></div><div class="card-name">Handmaid</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">8</span><div class="card-window"><img src="hof-princess.webp"></div><div class="card-name">Princess</div></div>
+      </div>
+      <div class="cards small">
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">1</span><div class="card-window"><img src="hof-guard.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">4</span><div class="card-window"><img src="hof-handmaid.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">8</span><div class="card-window"><img src="hof-princess.webp"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="style s-tarot">
+    <div>
+      <h3>Option B</h3>
+      <h2>Tarot de Marseille</h2>
+      <div class="meta">Nicolas Conver, Marseille, 1760. Woodblock with stencil colour: black line, flat red, yellow, blue, green. The photos on Commons are CC BY-SA 4.0; older Dodal scans are public domain but tiny.</div>
+      <ul class="notes">
+        <li><b>Palette</b> Primary and loud. The frame would have to go black-line to not fight it; lapis and gold disappear.</li>
+        <li><b>Frame</b> Single heavy rule, no checker, square window. It becomes a card, not a miniature.</li>
+        <li><b>At 56px</b> Best of the set: made to be read in a hand.</li>
+        <li><b>Tone</b> Occult, esoteric. Reads as "fortune telling" before it reads as "court intrigue".</li>
+      </ul>
+      <div class="verdict">Strongest graphically, <em>wrong story</em>. Also drags the whole interface toward black and primary colours.</div>
+      <div class="chrome"><span class="tag" style="border-color:#1d1d1b">Chrome would go black-line</span><span class="cta" style="background:#d4342a">Play the Guard</span></div>
+    </div>
+    <div>
+      <div class="cards">
+        <div class="card" style="--card-w:132px"><span class="card-rank">1</span><div class="card-window"><img src="tarot-guard.webp"></div><div class="card-name">Guard</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">2</span><div class="card-window"><img src="tarot-priest.webp"></div><div class="card-name">Priest</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">6</span><div class="card-window"><img src="tarot-king.webp"></div><div class="card-name">King</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">8</span><div class="card-window"><img src="tarot-princess.webp"></div><div class="card-name">Princess</div></div>
+      </div>
+      <div class="cards small">
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">1</span><div class="card-window"><img src="tarot-guard.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">2</span><div class="card-window"><img src="tarot-priest.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">6</span><div class="card-window"><img src="tarot-king.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">8</span><div class="card-window"><img src="tarot-princess.webp"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="style s-wood">
+    <div>
+      <h3>Option C</h3>
+      <h2>Incunable woodcut</h2>
+      <div class="meta">Der Ritter vom Turn, Basel 1493 (attributed to the young Dürer). Black line on paper, no colour. Public domain, museum scans (Met, CC0).</div>
+      <ul class="notes">
+        <li><b>Palette</b> None. One ink. Rank numerals could take a single red, as rubrication did.</li>
+        <li><b>Frame</b> Hairline black rule, no gold, no band. The card becomes a printed page.</li>
+        <li><b>At 56px</b> Weak: crosshatching turns to grey mush at thumbnail size.</li>
+        <li><b>Tone</b> Serious, scholarly, a bit grim. Beautiful on a desktop, dull on a phone.</li>
+      </ul>
+      <div class="verdict">Most "designed" and most austere. Loses the thing you liked first, <u>colour</u>.</div>
+      <div class="chrome"><span class="tag">Chrome unchanged</span><span class="cta" style="background:#1c1a17">Play the Guard</span></div>
+    </div>
+    <div>
+      <div class="cards">
+        <div class="card" style="--card-w:132px"><span class="card-rank red">1</span><div class="card-window"><img src="wood-guard.webp"></div><div class="card-name">Guard</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank red">2</span><div class="card-window"><img src="wood-priest.webp"></div><div class="card-name">Priest</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank red">8</span><div class="card-window"><img src="wood-princess.webp"></div><div class="card-name">Princess</div></div>
+      </div>
+      <div class="cards small">
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank red">1</span><div class="card-window"><img src="wood-guard.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank red">2</span><div class="card-window"><img src="wood-priest.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank red">8</span><div class="card-window"><img src="wood-princess.webp"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="style s-ukiyo">
+    <div>
+      <h3>Option D</h3>
+      <h2>Ukiyo-e</h2>
+      <div class="meta">Kuniyoshi and Utamaro, Edo, 1790s–1830s. Woodblock prints: flat colour, confident line, lots of pattern. Public domain, excellent scans.</div>
+      <ul class="notes">
+        <li><b>Palette</b> Indigo, vermilion, bone. The frame drops gold and the checker for two thin vermilion rules.</li>
+        <li><b>Frame</b> Could lose the frame entirely and bleed the print to the edge; the rank would need a cartouche.</li>
+        <li><b>At 56px</b> Good: big shapes and strong contrast.</li>
+        <li><b>Tone</b> Theatrical, elegant. But the cast is European court roles; the names and the pictures would argue.</li>
+      </ul>
+      <div class="verdict">Gorgeous and <em>incoherent</em> with the cards' names. Would want a retheme, which is a different project.</div>
+      <div class="chrome"><span class="tag" style="border-color:#1f2f4f">Chrome shifts to indigo</span><span class="cta" style="background:#c9402b">Play the Guard</span></div>
+    </div>
+    <div>
+      <div class="cards">
+        <div class="card" style="--card-w:132px"><span class="card-rank">1</span><div class="card-window"><img src="ukiyo-guard.webp"></div><div class="card-name">Guard</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">2</span><div class="card-window"><img src="ukiyo-priest.webp"></div><div class="card-name">Priest</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">8</span><div class="card-window"><img src="ukiyo-princess.webp"></div><div class="card-name">Princess</div></div>
+      </div>
+      <div class="cards small">
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">1</span><div class="card-window"><img src="ukiyo-guard.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">2</span><div class="card-window"><img src="ukiyo-priest.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">8</span><div class="card-window"><img src="ukiyo-princess.webp"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="style s-gold">
+    <div>
+      <h3>Option E</h3>
+      <h2>Golden-age illustration</h2>
+      <div class="meta">Walter Crane and Edmund Dulac, London, 1870s–1910s. Fairy-tale books: princesses, dwarfs, pea-mattresses. Public domain.</div>
+      <ul class="notes">
+        <li><b>Palette</b> Olive, ochre, dusty rose, a lot of mid-tones. The frame goes olive and gold with a softer, arched window.</li>
+        <li><b>Frame</b> Art Nouveau wants curves; the arched top is the minimum. The checker band is gone.</li>
+        <li><b>At 56px</b> Poor. These are full-page scenes with small figures; nothing survives a thumbnail.</li>
+        <li><b>Tone</b> Storybook, sweet. Nearest to "fairy-tale princess", furthest from "bluffing".</li>
+      </ul>
+      <div class="verdict">Pretty on the home page, <em>useless in a hand</em>. The scenes don't crop to single figures.</div>
+      <div class="chrome"><span class="tag" style="border-color:#5a6b3b">Chrome shifts to olive</span><span class="cta" style="background:#b86a2b">Play the Guard</span></div>
+    </div>
+    <div>
+      <div class="cards">
+        <div class="card" style="--card-w:132px"><span class="card-rank">1</span><div class="card-window"><img src="gold-guard.webp"></div><div class="card-name">Guard</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">6</span><div class="card-window"><img src="gold-king.webp"></div><div class="card-name">King</div></div>
+        <div class="card" style="--card-w:132px"><span class="card-rank">8</span><div class="card-window"><img src="gold-princess.webp"></div><div class="card-name">Princess</div></div>
+      </div>
+      <div class="cards small">
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">1</span><div class="card-window"><img src="gold-guard.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">6</span><div class="card-window"><img src="gold-king.webp"></div></div>
+        <div class="card card-sm" style="--card-w:56px"><span class="card-rank">8</span><div class="card-window"><img src="gold-princess.webp"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="style" style="display:block">
+    <h3>Summary</h3>
+    <table>
+      <tr><th>Tradition</th><th>Fits the story</th><th>Legible at 56px</th><th>Keeps the chrome</th><th>Licensing</th><th>One line</th></tr>
+      <tr><td>Codex Manesse (current)</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Public domain</td><td>The subject of the manuscript is the subject of the game.</td></tr>
+      <tr><td>Hofämterspiel</td><td class="y">Yes</td><td>Mostly</td><td class="y">Yes</td><td class="n">Photos CC BY-SA</td><td>The one real alternative. Could also mix: a Manesse deck with a Hofämterspiel back.</td></tr>
+      <tr><td>Tarot de Marseille</td><td class="n">No</td><td class="y">Yes</td><td class="n">No</td><td class="n">Photos CC BY-SA</td><td>Best card graphics, wrong genre.</td></tr>
+      <tr><td>Incunable woodcut</td><td>Partly</td><td class="n">No</td><td class="y">Yes</td><td class="y">CC0</td><td>Austere and monochrome; loses the colour.</td></tr>
+      <tr><td>Ukiyo-e</td><td class="n">No</td><td class="y">Yes</td><td class="n">No</td><td class="y">Public domain</td><td>Needs a retheme of names and roles.</td></tr>
+      <tr><td>Golden-age illustration</td><td>Partly</td><td class="n">No</td><td class="n">No</td><td class="y">Public domain</td><td>Scenes, not figures; dies at thumbnail size.</td></tr>
+    </table>
+    <p style="margin-top:24px">What the exercise shows: the art choice is really a <b>frame and chrome</b> choice. Manesse and Hofämterspiel sit inside the current system. Tarot, ukiyo-e and golden-age each pull the frame, the accent colour and then the whole interface after them. Changing the pictures means redoing piece two.</p>
+  </section>
+</main>
+</body>
+</html>

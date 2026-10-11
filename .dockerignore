@@ -1,0 +1,9 @@
+.git
+node_modules
+**/node_modules
+**/dist
+data
+*.log
+.env
+deploy
+packages/web/public/design/refs

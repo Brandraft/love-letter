@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Love Letter · Retheme study</title>
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+  :root { --bg:#f3f0e8; --bg-2:#e9e5db; --ink:#1c1a17; --ink-2:#6a655c; --ink-3:#a39d92; --line:#d8d3c7; --acc:#c0391f; --serif:'Alegreya',Georgia,serif; --sans:'Alegreya Sans',system-ui,sans-serif; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:400 17px/1.5 var(--sans); }
+  main { max-width:1180px; margin:0 auto; padding:40px 28px 80px; }
+  h1 { font:800 44px/1.05 var(--serif); margin:0 0 8px; }
+  h2 { font:800 30px/1.1 var(--serif); margin:0 0 4px; }
+  h3 { font:700 13px var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin:0 0 10px; }
+  p { max-width:68ch; }
+  .lede { font-size:19px; color:var(--ink-2); margin:0 0 36px; }
+  a { color:var(--ink); }
+  .nav { font-size:14px; color:var(--ink-2); margin-bottom:28px; }
+  section.theme { border-top:1px solid var(--line); padding:36px 0 32px; }
+  .top { display:grid; grid-template-columns:1fr 1.2fr; gap:36px; align-items:start; }
+  .meta { font-size:14px; color:var(--ink-2); }
+  .cards { display:flex; gap:18px; align-items:flex-end; flex-wrap:wrap; }
+  .cards.small { gap:6px; margin-top:18px; }
+  .cast { width:100%; border-collapse:collapse; font-size:15px; margin:22px 0 0; }
+  .cast th, .cast td { text-align:left; padding:7px 14px 7px 0; border-top:1px solid var(--line); vertical-align:top; }
+  .cast th { font:700 12px var(--sans); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); border-top:0; padding-bottom:4px; }
+  .cast td.n { font:800 15px var(--serif); color:var(--ink-3); width:28px; }
+  .cast td.was { color:var(--ink-3); width:110px; }
+  .cast td.now { font:700 16px var(--serif); }
+  .cast td.why { color:var(--ink-2); }
+  .notes { display:grid; grid-template-columns:1fr 1fr; gap:6px 28px; margin:18px 0 0; padding:0; list-style:none; font-size:15px; }
+  .notes li { padding:6px 0; border-top:1px solid var(--line); }
+  .notes li b { display:block; font:700 12px var(--sans); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+  .verdict { margin-top:16px; font:700 18px/1.3 var(--serif); }
+  .verdict u { text-decoration:none; border-bottom:2px solid var(--ink); }
+  .verdict em { font-style:italic; color:var(--acc); }
+  .sentence { margin-top:14px; font:700 22px/1.3 var(--serif); }
+  .sentence u { text-decoration:none; border-bottom:2px solid var(--ink); }
+  .sentence em { font-style:italic; color:var(--acc); }
+  .chrome { margin-top:14px; display:flex; gap:14px; align-items:center; font-size:14px; }
+  .chrome .tag { padding:4px 0; border-bottom:2px solid var(--ink); font:700 15px var(--serif); }
+  .chrome .cta { font:600 14px var(--sans); color:#fff; padding:8px 14px; border-radius:4px; }
+  .swatch { display:inline-flex; vertical-align:middle; margin-left:8px; } .swatch i { width:18px; height:18px; display:block; }
+
+  .card { --parch:#f1e7d2; --parch-2:#e6d9bd; --lapis:#23418c; --lapis-2:#172c63; --verm:#c43a26; --gold:#cfa43a;
+    width:var(--card-w); aspect-ratio:7/10; font-size:calc(var(--card-w)/16); position:relative; border-radius:.9em; background:var(--parch); color:var(--lapis-2);
+    padding:.8em; display:flex; flex-direction:column; overflow:hidden; flex-shrink:0; box-shadow:0 1px 1px rgba(0,0,0,.3),0 .8em 1.6em rgba(10,10,30,.45); }
+  .card::before { content:''; position:absolute; inset:.4em; border:.15em solid var(--lapis); border-radius:.6em; pointer-events:none; }
+  .card::after { content:''; position:absolute; inset:.75em; border:.1em solid var(--gold); border-radius:.4em; pointer-events:none; }
+  .card-rank { position:absolute; top:.55em; left:1.05em; z-index:2; font:800 1.9em/1 var(--serif); color:var(--lapis-2); letter-spacing:-.02em; }
+  .card-window { flex:1; min-height:0; margin:2.4em .4em 0; position:relative; overflow:hidden; border:.15em solid var(--lapis); border-radius:.3em; background:var(--parch-2); }
+  .card-window img { width:100%; height:100%; object-fit:cover; display:block; }
+  .card-window::before, .card-window::after { content:''; position:absolute; left:0; right:0; height:.7em; z-index:1;
+    background:repeating-linear-gradient(90deg,var(--verm) 0 .7em,var(--gold) .7em 1.4em,var(--lapis) 1.4em 2.1em,var(--gold) 2.1em 2.8em); }
+  .card-window::before { top:0; border-bottom:.1em solid var(--lapis); } .card-window::after { bottom:0; border-top:.1em solid var(--lapis); }
+  .card-name { margin:.7em .4em 0; text-align:center; font:800 1.45em/1 var(--serif); letter-spacing:.12em; text-transform:uppercase; padding:.25em 0 .15em; }
+  .card-sm .card-name { display:none; } .card-sm { padding:.7em; }
+
+  /* Edo: indigo and vermilion, bone paper, a seal-red cartouche for the rank. */
+  .t-edo .card { --parch:#f3ecdd; --parch-2:#e9e0cb; --lapis:#1f2f4f; --lapis-2:#f3ecdd; --verm:#c9402b; --gold:#f3ecdd; border-radius:.4em; }
+  .t-edo .card::after { display:none; } .t-edo .card::before { inset:.5em; border-width:.1em; border-radius:.2em; }
+  .t-edo .card-window::before, .t-edo .card-window::after { height:.35em; background:var(--verm); border:0; }
+  .t-edo .card-window { border-width:.1em; border-radius:0; }
+  .t-edo .card-rank { background:var(--verm); padding:.15em .3em .1em; border-radius:.1em; font-size:1.5em; top:.6em; left:1.1em; }
+  .t-edo .card-name { font-weight:700; letter-spacing:.3em; color:#1f2f4f; }
+  /* Persia: lapis, gold and a rose-madder; the window gets an illuminated rule. */
+  .t-persia .card { --parch:#f6efe0; --parch-2:#ecdfc3; --lapis:#1b3a8a; --lapis-2:#1b3a8a; --verm:#b8324a; --gold:#d2a63c; border-radius:.7em; }
+  .t-persia .card::after { inset:.85em; border-width:.08em; }
+  .t-persia .card-window::before, .t-persia .card-window::after { height:.45em; background:repeating-linear-gradient(90deg,var(--gold) 0 .45em,var(--lapis) .45em .9em); }
+  .t-persia .card-window { border-radius:.3em .3em 2.2em 2.2em / .3em .3em 1.1em 1.1em; }
+  /* Paris: black ink, poster yellow, one red; sans-serif capitals. */
+  .t-paris .card { --parch:#f4e9c9; --parch-2:#efe2bd; --lapis:#1b1917; --lapis-2:#1b1917; --verm:#d9342b; --gold:#f0c23a; border-radius:.3em; }
+  .t-paris .card::after { display:none; } .t-paris .card::before { inset:.45em; border-width:.25em; border-radius:.15em; }
+  .t-paris .card-window::before, .t-paris .card-window::after { display:none; }
+  .t-paris .card-window { border-width:.2em; border-radius:0; margin-top:2.2em; }
+  .t-paris .card-rank { font:800 1.9em/1 var(--sans); }
+  .t-paris .card-name { font:700 1.3em/1 var(--sans); letter-spacing:.22em; }
+  /* Tenochtitlan: ochre, turquoise, black outline; stepped rules. */
+  .t-aztec .card { --parch:#f3ead5; --parch-2:#ebe0c7; --lapis:#1f1d1a; --lapis-2:#1f1d1a; --verm:#c8562a; --gold:#3fa9a3; border-radius:.2em; }
+  .t-aztec .card::after { inset:.8em; border-width:.08em; border-color:var(--gold); border-radius:0; }
+  .t-aztec .card::before { border-radius:0; }
+  .t-aztec .card-window { border-radius:0; }
+  .t-aztec .card-window::before, .t-aztec .card-window::after { height:.6em; background:repeating-linear-gradient(90deg,var(--verm) 0 .6em,var(--parch) .6em 1.2em,var(--gold) 1.2em 1.8em,var(--parch) 1.8em 2.4em); }
+  @media (max-width:760px) { .top { grid-template-columns:1fr; } .notes { grid-template-columns:1fr; } main { padding:28px 18px 60px; } h1 { font-size:34px; } .cast td.why { display:none; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="nav"><a href="/design/">← Design guide</a> · <a href="/design/art/">Art study</a></div>
+  <h1>Retheme study: when the pictures change the cast</h1>
+  <p class="lede">Canvas only. The art study kept the European court and asked which pictures fit it. This one goes the other way: pick a tradition, let it rename the sixteen cards, and see what the frame, the sentence and the chrome become. Rules never change; only names, art and dressing. All sources public domain.</p>
+
+  <!-- EDO -->
+  <section class="theme t-edo">
+    <div class="top">
+      <div>
+        <h3>Retheme A</h3>
+        <h2>Edo: a letter to the shōgun's daughter</h2>
+        <div class="meta">Ukiyo-e, 1790s–1860s: Kuniyoshi, Utamaro, Kunisada. Woodblock prints with flat colour and a confident outline. The setting writes itself: the inner palace (ōoku), where ranks and go-betweens were the whole game.</div>
+        <ul class="notes">
+          <li><b>Palette</b> Indigo, vermilion, bone paper. Gold leaves; the seal-red cartouche carries the rank.</li>
+          <li><b>Frame</b> Thin single rule, two vermilion bands, square window. Name in wide tracked capitals.</li>
+          <li><b>Sentence</b> "Play the <u>Ashigaru</u> on Bot Beatrix, guessing <em>Monk</em>."</li>
+          <li><b>Chrome</b> Accent shifts from vermilion-orange to seal red; the page stays bone. Alegreya still works; a brush-script display face would be the tempting mistake.</li>
+        </ul>
+        <div class="verdict">The strongest retheme. <u>Every role has a real Edo counterpart</u>, the prints read at 56px, and the material is deep. Costs: card names stop being Love Letter's, so the curl help text and the README's rules table need a theme layer.</div>
+        <div class="chrome"><span class="tag" style="border-color:#1f2f4f">Chrome: bone + indigo</span><span class="cta" style="background:#c9402b">Play the Ashigaru</span></div>
+      </div>
+      <div>
+        <div class="cards">
+          <div class="card" style="--card-w:132px"><span class="card-rank">1</span><div class="card-window"><img src="edo-guard.webp"></div><div class="card-name">Ashigaru</div></div>
+          <div class="card" style="--card-w:132px"><span class="card-rank">2</span><div class="card-window"><img src="edo-priest.webp"></div><div class="card-name">Monk</div></div>
+          <div class="card" style="--card-w:132px"><span class="card-rank">6</span><div class="card-window"><img src="edo-king.webp"></div><div class="card-name">Shōgun</div></div>
+          <div class="card" style="--card-w:132px"><span class="card-rank">8</span><div class="card-window"><img src="edo-princess.webp"></div><div class="card-name">Hime</div></div>
+        </div>
+        <div class="cards small">
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">1</span><div class="card-window"><img src="edo-guard.webp"></div></div>
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">2</span><div class="card-window"><img src="edo-priest.webp"></div></div>
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">6</span><div class="card-window"><img src="edo-king.webp"></div></div>
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">8</span><div class="card-window"><img src="edo-princess.webp"></div></div>
+        </div>
+      </div>
+    </div>
+    <table class="cast">
+      <tr><th></th><th>Was</th><th>Becomes</th><th>Why it still works</th></tr>
+      <tr><td class="n">1</td><td class="was">Guard ×5</td><td class="now">Ashigaru</td><td class="why">Foot soldier. Names a suspect and strikes; plenty of them.</td></tr>
+      <tr><td class="n">2</td><td class="was">Priest ×2</td><td class="now">Monk</td><td class="why">Hears confessions, sees a hand.</td></tr>
+      <tr><td class="n">3</td><td class="was">Baron ×2</td><td class="now">Samurai</td><td class="why">A duel of rank; the lower hand is out.</td></tr>
+      <tr><td class="n">4</td><td class="was">Handmaid ×2</td><td class="now">Lady-in-waiting</td><td class="why">The ōoku's screen; untouchable until next turn.</td></tr>
+      <tr><td class="n">5</td><td class="was">Prince ×2</td><td class="now">Daimyō</td><td class="why">Orders a discard, even his own.</td></tr>
+      <tr><td class="n">6</td><td class="was">King ×1</td><td class="now">Shōgun</td><td class="why">Swaps hands by decree.</td></tr>
+      <tr><td class="n">7</td><td class="was">Countess ×1</td><td class="now">Tayū</td><td class="why">The highest courtesan; must step aside when a lord is present.</td></tr>
+      <tr><td class="n">8</td><td class="was">Princess ×1</td><td class="now">Hime</td><td class="why">The shōgun's daughter. Discard her and you are out.</td></tr>
+    </table>
+  </section>
+
+  <!-- PERSIA -->
+  <section class="theme t-persia">
+    <div class="top">
+      <div>
+        <h3>Retheme B</h3>
+        <h2>Isfahan: a letter to the shah's daughter</h2>
+        <div class="meta">Safavid and Timurid miniatures, 1450–1650: the Shahnameh of Shah Tahmasp, Nizami's Khosrow and Shirin. Jewel colour, gold ground, flat space, tiny faces. The literary source is already a love story told through intermediaries.</div>
+        <ul class="notes">
+          <li><b>Palette</b> Lapis, gold, rose madder. Closest to the current card palette; the chrome could stay as is.</li>
+          <li><b>Frame</b> Illuminated gold-and-lapis rule, window with a lobed bottom edge like a manuscript frontispiece.</li>
+          <li><b>Sentence</b> "Play the <u>Pahlavan</u> on Bot Beatrix, guessing <em>Dervish</em>."</li>
+          <li><b>At 56px</b> The weak point. Miniatures are crowded scenes with small figures; crops must isolate one person and still lose detail.</li>
+        </ul>
+        <div class="verdict">Most beautiful on a desktop, <em>hardest to crop</em>. Needs hand-chosen single-figure details, which exist but take a day of looking.</div>
+        <div class="chrome"><span class="tag">Chrome unchanged</span><span class="cta" style="background:#b8324a">Play the Pahlavan</span></div>
+      </div>
+      <div>
+        <div class="cards">
+          <div class="card" style="--card-w:132px"><span class="card-rank">1</span><div class="card-window"><img src="persia-guard.webp"></div><div class="card-name">Pahlavan</div></div>
+          <div class="card" style="--card-w:132px"><span class="card-rank">2</span><div class="card-window"><img src="persia-priest.webp"></div><div class="card-name">Dervish</div></div>
+          <div class="card" style="--card-w:132px"><span class="card-rank">6</span><div class="card-window"><img src="persia-king.webp"></div><div class="card-name">Shah</div></div>
+          <div class="card" style="--card-w:132px"><span class="card-rank">8</span><div class="card-window"><img src="persia-princess.webp"></div><div class="card-name">Shirin</div></div>
+        </div>
+        <div class="cards small">
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">1</span><div class="card-window"><img src="persia-guard.webp"></div></div>
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">2</span><div class="card-window"><img src="persia-priest.webp"></div></div>
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">6</span><div class="card-window"><img src="persia-king.webp"></div></div>
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">8</span><div class="card-window"><img src="persia-princess.webp"></div></div>
+        </div>
+      </div>
+    </div>
+    <table class="cast">
+      <tr><th></th><th>Was</th><th>Becomes</th><th>Why it still works</th></tr>
+      <tr><td class="n">1</td><td class="was">Guard ×5</td><td class="now">Pahlavan</td><td class="why">Champion-at-arms; names and strikes.</td></tr>
+      <tr><td class="n">2</td><td class="was">Priest ×2</td><td class="now">Dervish</td><td class="why">Sees what is hidden.</td></tr>
+      <tr><td class="n">3</td><td class="was">Baron ×2</td><td class="now">Khan</td><td class="why">Compares standing; the lesser leaves court.</td></tr>
+      <tr><td class="n">4</td><td class="was">Handmaid ×2</td><td class="now">Nadimeh</td><td class="why">Companion to the princess; shields her.</td></tr>
+      <tr><td class="n">5</td><td class="was">Prince ×2</td><td class="now">Shahzadeh</td><td class="why">Orders a hand discarded.</td></tr>
+      <tr><td class="n">6</td><td class="was">King ×1</td><td class="now">Shah</td><td class="why">Trades hands by decree.</td></tr>
+      <tr><td class="n">7</td><td class="was">Countess ×1</td><td class="now">Vizier's wife</td><td class="why">Must withdraw when royalty is in hand.</td></tr>
+      <tr><td class="n">8</td><td class="was">Princess ×1</td><td class="now">Shirin</td><td class="why">The beloved of the poem. Lose her and the round is over.</td></tr>
+    </table>
+  </section>
+
+  <!-- PARIS -->
+  <section class="theme t-paris">
+    <div class="top">
+      <div>
+        <h3>Retheme C</h3>
+        <h2>Paris 1895: a letter to the diva</h2>
+        <div class="meta">Belle Époque posters: Toulouse-Lautrec, Mucha, Chéret, Steinlen. Lithographs made to be read across a street: flat colour, black contour, lettering as part of the picture. The court becomes a theatre and the princess a star.</div>
+        <ul class="notes">
+          <li><b>Palette</b> Black, poster yellow, one red. Nothing of the current palette survives.</li>
+          <li><b>Frame</b> Heavy black rule, square window, sans-serif capitals. The card looks like a ticket.</li>
+          <li><b>Sentence</b> "Play the <u>Gendarme</u> on Bot Beatrix, guessing <em>Critic</em>."</li>
+          <li><b>Chrome</b> Pulls the whole interface with it: Alegreya would go, a grotesque would come in, the page would turn cream and black. A different product.</li>
+        </ul>
+        <div class="verdict">Funniest cast and the <u>most modern</u> look. But the chrome has to follow, and posters are landscapes and lettering, not portraits: crops fight the art.</div>
+        <div class="chrome"><span class="tag" style="border-color:#1b1917; font-family:var(--sans)">CHROME: CREAM + BLACK</span><span class="cta" style="background:#d9342b">Play the Gendarme</span></div>
+      </div>
+      <div>
+        <div class="cards">
+          <div class="card" style="--card-w:132px"><span class="card-rank">1</span><div class="card-window"><img src="paris-guard.webp"></div><div class="card-name">Gendarme</div></div>
+          <div class="card" style="--card-w:132px"><span class="card-rank">4</span><div class="card-window"><img src="paris-handmaid.webp"></div><div class="card-name">Dresser</div></div>
+          <div class="card" style="--card-w:132px"><span class="card-rank">6</span><div class="card-window"><img src="paris-king.webp"></div><div class="card-name">Impresario</div></div>
+          <div class="card" style="--card-w:132px"><span class="card-rank">8</span><div class="card-window"><img src="paris-princess.webp"></div><div class="card-name">La Diva</div></div>
+        </div>
+        <div class="cards small">
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">1</span><div class="card-window"><img src="paris-guard.webp"></div></div>
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">4</span><div class="card-window"><img src="paris-handmaid.webp"></div></div>
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">6</span><div class="card-window"><img src="paris-king.webp"></div></div>
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">8</span><div class="card-window"><img src="paris-princess.webp"></div></div>
+        </div>
+      </div>
+    </div>
+    <table class="cast">
+      <tr><th></th><th>Was</th><th>Becomes</th><th>Why it still works</th></tr>
+      <tr><td class="n">1</td><td class="was">Guard ×5</td><td class="now">Gendarme</td><td class="why">Accuses by name.</td></tr>
+      <tr><td class="n">2</td><td class="was">Priest ×2</td><td class="now">Critic</td><td class="why">Sees everything, says nothing useful.</td></tr>
+      <tr><td class="n">3</td><td class="was">Baron ×2</td><td class="now">Patron</td><td class="why">Compares purses; the poorer is shown out.</td></tr>
+      <tr><td class="n">4</td><td class="was">Handmaid ×2</td><td class="now">Dresser</td><td class="why">Nobody gets past the dressing-room door.</td></tr>
+      <tr><td class="n">5</td><td class="was">Prince ×2</td><td class="now">Leading man</td><td class="why">Makes someone drop their part.</td></tr>
+      <tr><td class="n">6</td><td class="was">King ×1</td><td class="now">Impresario</td><td class="why">Recasts: swaps hands.</td></tr>
+      <tr><td class="n">7</td><td class="was">Countess ×1</td><td class="now">Grande dame</td><td class="why">Must be played when a leading man or the impresario is in hand.</td></tr>
+      <tr><td class="n">8</td><td class="was">Princess ×1</td><td class="now">La Diva</td><td class="why">Sarah Bernhardt. Drop her and the show closes.</td></tr>
+    </table>
+  </section>
+
+  <!-- TENOCHTITLAN -->
+  <section class="theme t-aztec">
+    <div class="top">
+      <div>
+        <h3>Retheme D</h3>
+        <h2>Tenochtitlan: a letter to the tlatoani's daughter</h2>
+        <div class="meta">Codex Mendoza, 1541, and the pre-conquest codices (Borgia, Nuttall). Flat figures in profile with glyph-like outlines, ochre and turquoise on bark paper. Made to be read as signs, which is exactly what a card needs.</div>
+        <ul class="notes">
+          <li><b>Palette</b> Ochre, turquoise, black outline on cream. A fresh palette that still sits on a warm neutral page.</li>
+          <li><b>Frame</b> Square corners, stepped two-colour bands, thin turquoise inner rule. No gold.</li>
+          <li><b>Sentence</b> "Play the <u>Eagle Warrior</u> on Bot Beatrix, guessing <em>Priest</em>."</li>
+          <li><b>At 56px</b> Excellent. The figures are already icons.</li>
+        </ul>
+        <div class="verdict">Best legibility of the four, <u>least material</u>: the surviving codices have a few dozen usable figures and almost no named women, so the Princess and Handmaid need invention. Also the tone shifts from flirtation to tribute and war.</div>
+        <div class="chrome"><span class="tag" style="border-color:#3fa9a3">Chrome: cream + turquoise accent</span><span class="cta" style="background:#c8562a">Play the Eagle Warrior</span></div>
+      </div>
+      <div>
+        <div class="cards">
+          <div class="card" style="--card-w:132px"><span class="card-rank">1</span><div class="card-window"><img src="aztec-guard.webp"></div><div class="card-name">Eagle Warrior</div></div>
+          <div class="card" style="--card-w:132px"><span class="card-rank">2</span><div class="card-window"><img src="aztec-priest.webp"></div><div class="card-name">Priest</div></div>
+          <div class="card" style="--card-w:132px"><span class="card-rank">6</span><div class="card-window"><img src="aztec-king.webp"></div><div class="card-name">Tlatoani</div></div>
+          <div class="card" style="--card-w:132px"><span class="card-rank">8</span><div class="card-window"><img src="aztec-princess.webp"></div><div class="card-name">Princess</div></div>
+        </div>
+        <div class="cards small">
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">1</span><div class="card-window"><img src="aztec-guard.webp"></div></div>
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">2</span><div class="card-window"><img src="aztec-priest.webp"></div></div>
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">6</span><div class="card-window"><img src="aztec-king.webp"></div></div>
+          <div class="card card-sm" style="--card-w:56px"><span class="card-rank">8</span><div class="card-window"><img src="aztec-princess.webp"></div></div>
+        </div>
+      </div>
+    </div>
+    <table class="cast">
+      <tr><th></th><th>Was</th><th>Becomes</th><th>Why it still works</th></tr>
+      <tr><td class="n">1</td><td class="was">Guard ×5</td><td class="now">Eagle Warrior</td><td class="why">Names a captive.</td></tr>
+      <tr><td class="n">2</td><td class="was">Priest ×2</td><td class="now">Priest</td><td class="why">Reads the signs: looks at a hand.</td></tr>
+      <tr><td class="n">3</td><td class="was">Baron ×2</td><td class="now">Jaguar Knight</td><td class="why">Trial of rank.</td></tr>
+      <tr><td class="n">4</td><td class="was">Handmaid ×2</td><td class="now">Weaver</td><td class="why">Behind the loom, out of reach.</td></tr>
+      <tr><td class="n">5</td><td class="was">Prince ×2</td><td class="now">Noble (pilli)</td><td class="why">Demands a discard.</td></tr>
+      <tr><td class="n">6</td><td class="was">King ×1</td><td class="now">Tlatoani</td><td class="why">The speaker; swaps hands.</td></tr>
+      <tr><td class="n">7</td><td class="was">Countess ×1</td><td class="now">Cihuacoatl</td><td class="why">Second to the ruler; must act when a noble or the tlatoani is present.</td></tr>
+      <tr><td class="n">8</td><td class="was">Princess ×1</td><td class="now">Princess</td><td class="why">No surviving portrait; would need to be drawn in the codex manner.</td></tr>
+    </table>
+  </section>
+
+  <section class="theme" style="padding-bottom:0">
+    <h3>What the exercise shows</h3>
+    <p>A retheme is cheap in the engine (one name table, already isolated in <code>cards.ts</code>) and expensive everywhere else: art sourcing, the frame, the help text that curl prints, the README, and in two of four cases the chrome. If we ever ship one, it should be a <b>theme pack</b>: a JSON of names and effects text, a folder of eight images, and a small CSS block for the frame. The gallery-wall chrome stays constant, which is the whole point of having separated it.</p>
+    <p>Ranking by how much we'd have to touch: <b>Isfahan</b> (chrome unchanged, art hard), <b>Edo</b> (accent shifts, art easy, best cast), <b>Tenochtitlan</b> (accent shifts, art thin), <b>Paris</b> (everything changes).</p>
+  </section>
+</main>
+</body>
+</html>

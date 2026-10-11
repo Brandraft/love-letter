@@ -1,0 +1,8 @@
+node_modules
+dist
+*.log
+data/
+.env
+
+# Local-only design references (copyrighted covers, not for the public repo)
+packages/web/public/design/refs/

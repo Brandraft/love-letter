@@ -1,0 +1,22 @@
+[Unit]
+Description=Love Letter game server (web + API)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/Projects/love-letter
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=PORT=8080
+Environment=HOST=0.0.0.0
+Environment=DATA_DIR=%h/.local/share/love-letter
+Environment=BASE_URL=https://loveletter.brandraft.dev
+ExecStart=%h/.local/bin/mise exec node -- node packages/server/dist/main.js
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=15
+KillMode=control-group
+UMask=0077
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
