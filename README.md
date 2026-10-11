@@ -1,3 +1,5 @@
+![Love Letter](docs/banner.png)
+
 # Love Letter
 
 The card game Love Letter, playable three ways from the same room:
