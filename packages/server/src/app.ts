@@ -104,6 +104,12 @@ export function createApp(cfg: AppConfig) {
 
   setInterval(() => rooms.sweep(cfg.roomTtlMs), 10 * 60 * 1000).unref();
 
+  // Setting any header here also sidesteps a hono/@hono/node-server bug: c.text() with no
+  // headers builds a Response without init, and the HEAD→GET wrapper then dereferences
+  // init.headers and 500s (node-server 1.19.17, hono 4.13.13). Hono's secureHeaders
+  // middleware would also do, but one header is all we need.
+  app.use('*', async (c, next) => { c.header('x-content-type-options', 'nosniff'); await next(); });
+
   app.onError((err, c) => {
     if (err instanceof HttpError) return c.json({ error: err.message }, err.status as 400);
     console.error(err);
