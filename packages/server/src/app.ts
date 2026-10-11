@@ -53,11 +53,13 @@ export class Rooms {
 }
 
 /** HTML only for clients that ask for it; `?text` (or `?format=text`) forces the plain-text instructions. */
+const PREVIEW_BOTS = /twitterbot|facebookexternalhit|linkedinbot|slackbot|discordbot|telegrambot|whatsapp|embedly|pinterest|redditbot|mastodon|bluesky|applebot|googlebot|bingbot/i;
 function wantsHtml(c: Context): boolean {
   const q = c.req.query();
   if ('text' in q || q['format'] === 'text') return false;
   const a = c.req.header('accept') ?? '';
-  return a.includes('text/html');
+  // Link-preview crawlers need the HTML (and its meta tags) regardless of their Accept header.
+  return a.includes('text/html') || PREVIEW_BOTS.test(c.req.header('user-agent') ?? '');
 }
 
 function bearer(c: Context): string | undefined {
@@ -274,7 +276,7 @@ export function createApp(cfg: AppConfig) {
   app.notFound((c) => c.req.path.startsWith('/api') ? c.json({ error: 'not found' }, 404) : wantsHtml(c) ? html(c) : c.text('not found', 404));
 
   if (cfg.webDist) {
-    for (const path of ['/assets/*', '/cards/*', '/fonts/*', '/design/*', '/favicon.svg']) {
+    for (const path of ['/assets/*', '/cards/*', '/fonts/*', '/design/*', '/favicon.svg', '/og.png']) {
       app.use(path, serveStatic({ root: cfg.webDist }));
     }
   }
