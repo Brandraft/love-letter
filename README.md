@@ -16,6 +16,9 @@ curl -s -X POST https://example.org/api/rooms          # make a room
 curl -s https://example.org/r/k7mq2x                   # read the room's instructions
 ```
 
+The switch is the `Accept` header: browsers get the app, everything else gets
+text. A client that asks for HTML anyway can append `?text` to any page URL.
+
 ## How it works
 
 The game is API-first. The web client is just another consumer of the same

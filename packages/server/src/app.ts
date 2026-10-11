@@ -52,7 +52,10 @@ export class Rooms {
   }
 }
 
+/** HTML only for clients that ask for it; `?text` (or `?format=text`) forces the plain-text instructions. */
 function wantsHtml(c: Context): boolean {
+  const q = c.req.query();
+  if ('text' in q || q['format'] === 'text') return false;
   const a = c.req.header('accept') ?? '';
   return a.includes('text/html');
 }

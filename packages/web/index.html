@@ -1,4 +1,7 @@
 <!doctype html>
+<!-- Agents and terminals: this page is a JavaScript app. Fetch the same URL with
+     "Accept: text/plain" (curl's default) or append "?text" to get plain-text
+     instructions, rules and the API for this room. -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,10 +12,12 @@
     <link rel="stylesheet" href="/fonts/fonts.css" />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/Alegreya-variable.woff2" crossorigin />
     <title>Love Letter</title>
+    <link rel="alternate" type="text/plain" href="?text" vite-ignore title="Plain-text instructions for terminals and agents" />
     <script>(function(){try{var t=localStorage.getItem("love-letter:theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t;}catch(e){}})();</script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>Love Letter needs JavaScript in a browser. From a terminal or an agent, fetch this same URL with <code>Accept: text/plain</code> or add <code>?text</code> to it for the rules and the API.</noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
